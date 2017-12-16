@@ -15,6 +15,11 @@ angular.module('alurapic', ['minhasDiretivas','ngAnimate', 'ngRoute'])
         templateUrl: 'partials/foto.html',
         controller: 'FotoController'
     });
+
+    $routeProvider.when('/fotos/edit/:fotoId', {
+        templateUrl: 'partials/foto.html',
+        controller: 'FotoController'
+    });
     //Caso Contrario, caso ele digite uma url invalida ele leva para /fotos 
     $routeProvider.otherwise({ redirectTo: '/fotos'});
 });
