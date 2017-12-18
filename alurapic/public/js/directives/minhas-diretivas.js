@@ -17,4 +17,18 @@ angular.module('minhasDiretivas', [])
 
 
     return ddo;
-});
+})
+.directive('meuBotaoPerigo', function() {
+    var ddo = {};
+    ddo.restric = "E";
+
+    ddo.scope = {
+        nome: '@',
+        acao: '&' // quando se passa uma expressão utiliza &
+        // Nesse caso na no principal.html eu estou passando um valor.
+    };
+
+    ddo.template = '<button class="btn btn-danger btn-block" ng-click="acao()">{{nome}}</button>'
+
+    return ddo;
+})
