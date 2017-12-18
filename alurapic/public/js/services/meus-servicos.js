@@ -8,9 +8,11 @@
     });
  })
  //$q -> permite criar promise(promessas)
- .factory('cadastroDeFotos', function(recursoFoto, $q) {
+ //$rootScope - > tem  acesso a todos os $scope;
+ .factory('cadastroDeFotos', function(recursoFoto, $q, $rootScope) {
 
     var service = {};
+    var evento = 'fotoCadastrada';
 
     service.cadastrar = function(foto) {
         //resolve = sucess, quando tudo ocorre certo
@@ -18,6 +20,7 @@
         return $q(function(resolve, reject) {
             if(foto._id){
                 recursoFoto.update({fotoId: foto._id}, foto, function() {
+                    $rootScope.$broadcast(evento);
                     resolve({
                         mensagem : 'Foto ' + foto.titulo + ' alterada com sucesso',
                         inclusao: false
@@ -32,6 +35,7 @@
             
             } else {
                 recursoFoto.save(foto, function() {
+                    $rootScope.$broadcast(evento);
                     resolve({
                         mensagem : 'Foto cadastrada com sucesso',
                         inclusao: true
